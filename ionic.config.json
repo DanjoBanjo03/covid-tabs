@@ -1,0 +1,7 @@
+{
+  "name": "covid-tabs",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

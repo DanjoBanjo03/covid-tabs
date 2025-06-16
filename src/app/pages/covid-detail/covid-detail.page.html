@@ -1,0 +1,99 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>COVID-19 Vaccine Data</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-card color="warning">
+    <ion-card-header>
+      <ion-card-title>ONTARIO STATUS OF CASES</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p><strong>Total Cases:</strong> 266363</p>
+      <p><strong>Resolved:</strong> 240494</p>
+      <p><strong>Deaths:</strong> 6145</p>
+      <p><strong>Hospitalized:</strong> 1273</p>
+      <p><strong>ICU:</strong> 353</p>
+      <p><strong>Ventilator:</strong> 216</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card color="danger" *ngIf="!record">
+    <ion-card-header>
+      <ion-card-title>No Data Available</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      No record data was received.
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card color="primary" *ngIf="record">
+    <ion-card-header>
+      <ion-card-title>COVID-19 Data Details</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row *ngIf="record.date">
+          <ion-col><strong>Report Date</strong></ion-col>
+          <ion-col>{{ record.date }}</ion-col>
+        </ion-row>
+        <ion-row *ngIf="record.deaths_total !== undefined">
+          <ion-col>Total Deaths</ion-col>
+          <ion-col>{{ record.deaths_total }}</ion-col>
+        </ion-row>
+        <ion-row *ngIf="record.death_covid !== undefined">
+          <ion-col>COVID Deaths</ion-col>
+          <ion-col>{{ record.death_covid }}</ion-col>
+        </ion-row>
+        <ion-row *ngIf="record.death_covid_contrib !== undefined">
+          <ion-col>COVID Contributing</ion-col>
+          <ion-col>{{ record.death_covid_contrib }}</ion-col>
+        </ion-row>
+        <ion-row *ngIf="record.death_unknown_missing !== undefined">
+          <ion-col>Unknown/Missing</ion-col>
+          <ion-col>{{ record.death_unknown_missing }}</ion-col>
+        </ion-row>
+        
+        <ion-row *ngIf="record.totalCases !== undefined">
+          <ion-col>Total Cases</ion-col>
+          <ion-col>{{ record.totalCases }}</ion-col>
+        </ion-row>
+        <ion-row *ngIf="record.resolved !== undefined">
+          <ion-col>Resolved</ion-col>
+          <ion-col>{{ record.resolved }}</ion-col>
+        </ion-row>
+        <ion-row *ngIf="record.deaths !== undefined">
+          <ion-col>Deaths</ion-col>
+          <ion-col>{{ record.deaths }}</ion-col>
+        </ion-row>
+        <ion-row *ngIf="record.hospitalized !== undefined">
+          <ion-col>Hospitalized</ion-col>
+          <ion-col>{{ record.hospitalized }}</ion-col>
+        </ion-row>
+        <ion-row *ngIf="record.icu !== undefined">
+          <ion-col>ICU</ion-col>
+          <ion-col>{{ record.icu }}</ion-col>
+        </ion-row>
+        <ion-row *ngIf="record.ventilator !== undefined">
+          <ion-col>Ventilator</ion-col>
+          <ion-col>{{ record.ventilator }}</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-item>
+    <ion-input [(ngModel)]="messageText" placeholder="Follow Up"></ion-input>
+  </ion-item>
+
+  <ion-button expand="block" (click)="sendMessage()">
+    Send Message
+  </ion-button>
+
+  <ion-button expand="block" routerLink="/tabs/tab2" color="medium">
+    Back to Ontario
+  </ion-button>
+
+</ion-content>

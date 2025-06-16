@@ -1,0 +1,45 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Deaths involving COVID
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card color="warning">
+    <ion-card-header>
+      <ion-card-title>ONTARIO STATUS OF CASES</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p><strong>Total Cases:</strong> 266363</p>
+      <p><strong>Resolved:</strong> 240494</p>
+      <p><strong>Deaths:</strong> 6145</p>
+      <p><strong>Hospitalized:</strong> 1273</p>
+      <p><strong>ICU:</strong> 353</p>
+      <p><strong>Ventilator:</strong> 216</p>
+    </ion-card-content>
+  </ion-card>
+  
+  <ion-text *ngIf="msgFromPage !== 'No message'" color="primary">
+    <h3>{{ msgFromPage }}</h3>
+  </ion-text>
+  <ion-list>
+    <ion-item *ngFor="let record of records" (click)="viewDetail(record)">
+      <ion-label>
+        <h2>Date: {{ record.date }}</h2>
+        <p>Total Deaths: {{ record.deaths_total }}</p>
+        <p>COVID Deaths: {{ record.death_covid }}</p>
+        <p>COVID Contributing: {{ record.death_covid_contrib }}</p>
+        <p>Unknown/Missing: {{ record.death_unknown_missing }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+  <ion-text color="medium">
+    <p style="margin: 16px; font-size: 0.9em;">
+      Data source: <a href="https://data.ontario.ca/dataset" target="_blank">Ontario Data Catalogue</a><br />
+      Last updated: June 15, 2025
+    </p>
+  </ion-text>
+</ion-content>
+
